@@ -64,9 +64,10 @@ export default function ReactChip ({
 }: ReactChipInterface & any) {
   const [chips, setChips] = React.useState(defaultChips || [])
   const [input, setInput] = React.useState(defaultValue || '')
+  maxLength = maxLength || 9999
 
   function handleAddition (chip: string) {
-    if (chips.length >= (maxLength | 9999)) return
+    if (chips.length >= maxLength || chips.includes(chip)) return
     const updateChips = [...chips, chip.replace(/[^\w\s]/gi, '').trim()]
     onChange(updateChips)
     setChips(updateChips)

@@ -20,7 +20,7 @@ const App = () => {
       <ReactChip
         defaultChips={chips}
         defaultValue={'JavaScript'}
-        maxLength={10}
+        maxLength={5}
         onChange={value => setChips(value)}
       />
       <br/>

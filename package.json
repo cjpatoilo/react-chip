@@ -1,6 +1,6 @@
 {
 	"name": "react-chip",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Manage a list of chips based on a strings list.",
 	"homepage": "https://cjpatoilo.com/react-chip",
 	"repository": "cjpatoilo/react-chip",

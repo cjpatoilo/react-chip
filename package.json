@@ -1,0 +1,83 @@
+{
+	"name": "react-chip",
+	"version": "0.1.0",
+	"description": "Manage a list of chips based on a strings list.",
+	"homepage": "https://cjpatoilo.com/react-chip",
+	"repository": "cjpatoilo/react-chip",
+	"license": "MIT",
+	"author": "CJ Patoilo <cjpatoilo@gmail.com>",
+	"private": false,
+	"main": "dist/index.js",
+	"module": "dist/react-chip.esm.js",
+	"typings": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"keywords": [
+		"🐥",
+		"chip",
+		"chips",
+		"component",
+		"input",
+		"react",
+		"react-chip",
+		"react-chips"
+	],
+	"ignore": [
+		"artwork.psd",
+		".appveyor.yml",
+		".editorconfig",
+		".github",
+		".gitignore",
+		".travis.yml"
+	],
+	"dependencies": {},
+	"devDependencies": {
+		"@types/jest": "^24.0.19",
+		"@types/react": "^16.9.9",
+		"@types/react-dom": "^16.9.2",
+		"@types/styled-components": "^4.1.20",
+		"boeing": "latest",
+		"husky": "^3.0.9",
+		"inject-ga": "^0.2.4",
+		"lint-staged": "^9.4.2",
+		"marshmallow": "latest",
+		"prettier-standard": "^15.0.1",
+		"react": "^16.11.0",
+		"react-dom": "^16.11.0",
+		"rimraf": "^3.0.0",
+		"styled-components": "^4.4.0",
+		"tsdx": "^0.10.5",
+		"tslib": "^1.10.0",
+		"typescript": "^3.6.4"
+	},
+	"peerDependencies": {
+		"react": ">=16"
+	},
+	"scripts": {
+		"build": "tsdx build --entry index.tsx",
+		"deploy": "marshmallow -o docs -i artwork.psd -f -m && inject-ga docs/index.html -o docs/index.html -c 'UA-24389952-13' && boeing docs && rimraf docs",
+		"example": "parcel example/index.html",
+		"lint": "prettier-standard --check",
+		"start": "tsdx watch --entry index.tsx",
+		"test": "tsdx test --env=jsdom"
+	},
+	"engines": {
+		"node": "^12.13.0"
+	},
+	"prettier": {
+		"jsxSingleQuote": false,
+		"trailingComma": "all"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"src/**/*": [
+			"prettier-standard --format",
+			"git add"
+		]
+	}
+}

@@ -1,6 +1,6 @@
 # Contributing
 
-> __NOTE: The best way to learn about that is to just install it and give it a try on your code.__
+> **NOTE: The best way to learn about that is to just install it and give it a try on your code.**
 
 ## Test
 

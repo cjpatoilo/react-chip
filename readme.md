@@ -10,11 +10,9 @@
 [![Download Status](https://img.shields.io/npm/dt/react-chip.svg)](https://www.npmjs.com/package/react-chip)
 [![Gitter Chat](https://img.shields.io/badge/gitter-join_the_chat-4cc61e.svg)](https://gitter.im/cjpatoilo/react-chip)
 
-
 ## Why it's awesome
 
 [description]
-
 
 ## Install
 
@@ -51,11 +49,9 @@ import ReactChip from 'react-chip'
 />
 ```
 
-
 ## Contributing
 
 Want to contribute? Follow these [recommendations](https://github.com/cjpatoilo/react-chip#contributing).
-
 
 ## License
 

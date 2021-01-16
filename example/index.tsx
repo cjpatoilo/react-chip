@@ -23,7 +23,7 @@ const App = () => {
         maxLength={5}
         onChange={value => setChips(value)}
       />
-      <br/>
+      <br />
       {JSON.stringify(chips, null, 2)}
       <GlobalStyle />
     </>

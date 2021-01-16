@@ -55,25 +55,25 @@ export type ReactChipType = {
   name?: string
   maxLength?: number
   onChange?: () => string[]
+  style?: any
 }
 
-function normalizeDefaultChip (value: any): string[] {
-  return typeof value === 'string' ? String(value)?.split(',') : Array.isArray(value) ? value?.map(item => String(item)) : []
-}
-
-function useReactChip ({
+export default function ReactChip ({
+  className = '',
   defaultChips = [],
   defaultValue = '',
+  id = '',
+  name = '',
   maxLength = 9999,
-  onChange = () => [],
-}: ReactChipType): [string | string[], any, any, any, string] {
-  const [chips, setChips] = useState(normalizeDefaultChip(defaultChips))
+  onChange = () => {},
+  style = {},
+}: ReactChipType & any) {
+  const [chips, setChips] = useState(defaultChips)
   const [input, setInput] = useState(defaultValue)
 
   function handleAddition (chip: string) {
     if (chips?.length >= maxLength || chips?.includes(chip)) return
-    const updateChips: string[] = [...chips, String(chip?.replace(/[^\w\s]/gi, '').trim())]
-    // @ts-ignore
+    const updateChips = [...chips, chip?.replace(/[^\w\s]/gi, '').trim()]
     onChange(updateChips)
     setChips(updateChips)
     setInput('')
@@ -82,14 +82,13 @@ function useReactChip ({
   function handleDelete (value: string) {
     if (chips?.length <= 0) return
     const updateChips = chips?.filter((chip: string) => chip !== value)
-    // @ts-ignore
     onChange(updateChips)
     setChips(updateChips)
   }
 
   function handleChange (event: FormEvent<HTMLInputElement>) {
-    event.preventDefault()
-    event.stopPropagation()
+    event?.preventDefault()
+    event?.stopPropagation()
     const {
       currentTarget: { value },
     } = event
@@ -106,13 +105,13 @@ function useReactChip ({
   }
 
   function handleClick (event: FormEvent, chip: string) {
-    event.preventDefault()
-    event.stopPropagation()
+    event?.preventDefault()
+    event?.stopPropagation()
     handleDelete(chip)
   }
 
   function handleKeyDown (event: any) {
-    event.stopPropagation()
+    event?.stopPropagation()
     const {
       currentTarget: { value, previousSibling },
       key,
@@ -120,46 +119,28 @@ function useReactChip ({
     } = event
 
     if (!value && chips?.length && (key === 'Backspace' || key === 'Delete')) {
-      event.preventDefault()
-      if (
-        previousSibling.classList &&
-        previousSibling.classList.contains('ChipLabel--focus')
-      ) {
-        handleDelete(chips[chips?.length - 1])
+      event?.preventDefault()
+      if (previousSibling?.classList?.contains('ChipLabel--focus')) {
+        handleDelete(chips?.[chips?.length - 1])
       } else {
-        previousSibling.classList.add('ChipLabel--focus')
+        previousSibling?.classList?.add('ChipLabel--focus')
       }
     }
     if (
       value &&
       chips &&
-      previousSibling &&
-      previousSibling.classList &&
-      previousSibling.classList.contains('ChipLabel--focus')
+      previousSibling?.classList?.contains('ChipLabel--focus')
     ) {
-      previousSibling.classLis.pxove('ChipLabel--focus')
+      previousSibling?.classLis?.pxove('ChipLabel--focus')
     }
     if (value && (key === 'Enter' || keyCode === 32)) {
-      event.preventDefault()
+      event?.preventDefault()
       handleAddition(value)
     }
   }
 
-  return [chips, handleClick, handleChange, handleKeyDown, input]
-}
-
-export default function ReactChip ({
-  className = '',
-  id,
-  name,
-  ...rest
-}: ReactChipType & any) {
-  const [chips, handleClick, handleChange, handleKeyDown, input] = useReactChip(
-    rest,
-  )
-
   return (
-    <Chip className={className} id={id}>
+    <Chip className={className} id={id} style={style}>
       {Array.isArray(chips)
         ? chips?.map(chip => (
             <ChipLabel key={chip} onClick={event => handleClick(event, chip)}>

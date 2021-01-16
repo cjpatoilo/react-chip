@@ -1,7 +1,8 @@
 import 'react-app-polyfill/ie11'
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import { createGlobalStyle } from 'styled-components'
+
 import ReactChip from '../'
 
 const GlobalStyle = createGlobalStyle`
@@ -12,8 +13,8 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const App = () => {
-  const [chips, setChips] = React.useState(['React', 'Node.js'])
+function MyApp () {
+  const [chips, setChips] = useState(['React', 'Node.js'])
 
   return (
     <>
@@ -30,4 +31,4 @@ const App = () => {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<MyApp />, document.getElementById('root'))

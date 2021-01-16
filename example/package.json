@@ -1,7 +1,7 @@
 {
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel index.html --open --port 3000",
     "build": "parcel build index.html"
   },
   "dependencies": {
